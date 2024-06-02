@@ -37,9 +37,6 @@ class ReceiverThread(threading.Thread):
         try:
             chunk = self.client_socket.recv(MSG_SIZE)
             t, payload = struct.unpack("Bi", chunk)
-            # x = self.client_socket.setsockopt( socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
-            # self.client_socket.ioctl(socket.SIO_KEEPALIVE_VALS, (1, 10000, 3000))
-
             if t != 1:
                 print("bad msg from receiver")
                 return
@@ -47,25 +44,19 @@ class ReceiverThread(threading.Thread):
             chunk = struct.pack("B50s", 1, self.beacon_name.encode('utf-8') + b'\x00')
             self.client_socket.send(chunk)
 
-            #init done
             receivers[rec_id] = Receiver(0, 0)
             print("CONNECTED TO TRACKER: ", rec_id)
             self.on_add_device(rec_id)
-
-            # msg_bytes = b''
             while self.shouldRun:
                 try:
                     chunk = self.client_socket.recv(MSG_SIZE)
-                    # print("GETTING: ", chunk)
                     if len(chunk) == 8:
                         t, payload = struct.unpack("Bi", chunk)
                         payload = kf.filter(payload)
-                        receivers[rec_id].data_queue.put(payload) # rssi in payload zamiast poprostu wywolanie callbacka
+                        receivers[rec_id].data_queue.put(payload) 
                         self.on_device_dist_change(rec_id, payload)
                 except socket.timeout:
                     pass
-                # if len(chunk) == 0:
-                #     raise socket.error
         except (socket.error, ConnectionResetError, Exception):
             print(f"receiver {rec_id} socket error, terminating connection")
             del receivers[rec_id]
