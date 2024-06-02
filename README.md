@@ -1,5 +1,5 @@
 # bt_tracker
-Śledzenie lokalizacji nadajnika Bluetooth Low Energy (BLE) z wykorzystaniem esp32. 
+Projekt na przedmiot systemy wbudowane - Śledzenie lokalizacji nadajnika Bluetooth Low Energy (BLE) z wykorzystaniem esp32. 
 
 ## Opis projektu
 
