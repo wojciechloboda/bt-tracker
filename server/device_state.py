@@ -90,7 +90,6 @@ class DeviceStateUI():
             self.connected_devices[id].last_y = y
                     
         circles = [Circle(dev.last_x, dev.last_y, dev.last_dist * PIXELS_TO_METER) for dev in self.connected_devices.values()]
-        print(circles)
         result, _ = easy_least_squares(circles)
         self.map.destroy_beacon_marker()
         self.map.update_beacon_marker(result.center.x, result.center.y, result.radius, 'green')

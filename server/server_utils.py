@@ -111,12 +111,11 @@ class AcceptConThread(threading.Thread):
                 except TimeoutError:
                     pass
             for rec in self.rec_threads:
-                print("trying to kill kids")
                 rec.terminate()
                 if rec.alive():
                     rec.join(0.1)
         except (socket.error, ConnectionResetError, Exception):
-            print("dik some exception")
+            print("server socket exception")
 
 if __name__ == '__main__':
     try:
