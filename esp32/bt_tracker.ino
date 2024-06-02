@@ -7,9 +7,9 @@
 #include <BLEAdvertisedDevice.h>
 
 // Configuration
-#define SSID "bt_tracker"
-#define WIFI_PASSWORD "12345678"
-#define SERVER_HOSTNAME "wojtek.local"
+#define SSID "your ssid"
+#define WIFI_PASSWORD "your wifi password"
+#define SERVER_HOSTNAME ".local server hostname"
 #define SERVER_PORT 9000
 //
 
