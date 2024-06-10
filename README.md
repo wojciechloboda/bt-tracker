@@ -26,6 +26,11 @@ Aplikacja serwera po uruchomieniu udostępnia użytkownikowi interfejs graficzny
 ### Odbiorniki
 Odbiornik ESP32 po uruchomieniu próbuje przyłączyć się do sieci. Następnie inizjalizuje moduł BLE i stara się zainicjować komunikację z serwerem. Jeżeli serwer jest uruchomiony to połączenie jest inicjalizowane a serwer przesyła odbiornikowi konfiguracje potrzebną do śledzenia nadajnika (nazwę ogłaszanego urządzenia). Następnie odbiornik regularnie skanuje urządzenia BLE i jeżeli wykrywa śledzone urządzenie to przesyła na serwer aktualne RSSI.
 
+### Schemat
+
+![schemat](https://github.com/wojciechloboda/bt_tracker/assets/46354460/9c293090-ae7a-4e37-8075-00fe197e3c04)
+
+
 ### Konwersja RSSI na metry
 
 $ \text{DISTANCE} = 10^{(\text{MEASURED\_RSSI} - \text{RSSI})/(10 * N)} $
